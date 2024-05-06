@@ -1,0 +1,28 @@
+
+
+<body>
+    <app-user-profile-aside></app-user-profile-aside>
+
+  <div class="events-container">
+    <h2>Twoje Wydarzenia</h2>
+    <ng-container *ngIf="events.length > 0; else noEvents">
+        <div class="event-list">
+          <div  class="event" *ngFor="let event of events">
+              <div class="card">
+                  <img [src]="event.imageUrl" alt="Event image">
+                  <div>
+                    <h3>{{ event.name }}</h3>
+                    <p>{{ event.startDate }} - {{ event.endDate }}</p>
+                  </div>
+                  <i class="fas fa-edit" (click)="editEvent(event)"></i>
+                </div>              
+          </div>
+        </div> 
+    </ng-container>
+    <button (click)="addEvent()">+ Dodaj Wydarzenie</button>
+  
+    <ng-template #noEvents>
+      <p>Brak wydarzeń.</p>
+    </ng-template>
+  </div>
+</body>

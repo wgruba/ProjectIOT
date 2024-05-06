@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <p>{{ data.message }}</p>
+
+  <div dropdown>
+    <button class="add-category-button" type="button" id="categoryDropdown"
+            data-bs-toggle="dropdown" aria-expanded="false">
+      Dodaj Kategorie: 
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+        <li *ngFor="let category of categories" class="dropdown-submenu">
+          <a class="dropdown-item" href="javascript:void(0);"
+             (click)="toggleCategorySelection(category.id)">
+            {{ category.name }}
+          </a>
+          <ul class="dropdown-menu dropdown-submenu-right">
+            <li *ngFor="let subcategory of category.subcategories">
+              <a class="dropdown-item" href="javascript:void(0);"
+                 (click)="toggleSubcategorySelection(subcategory.first)">
+                {{ subcategory.second }}
+              </a>
+            </li>
+          </ul>
+        </li>
+    </ul>
+  </div>
+  
+      <!-- Display Selected Categories and Subcategories -->
+      <div class="category-list">
+        <ul>
+          <li *ngFor="let categoryName of getSelectedCategoryNames()">
+            {{ categoryName }}
+            <button class="remove-button" (click)="removeSelectedCategory(categoryName)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>                              
+            </li>
+        </ul>
+        <ul>
+          <li *ngFor="let subcategoryName of getSelectedSubcategoryNames()">
+            {{ subcategoryName }}
+            <button class="remove-button" (click)="removeSelectedSubcategory(subcategoryName)">
+                <i class="fa fa-trash" aria-hidden="true"></i></button>                         
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div mat-dialog-actions align="center">
+  <button mat-button (click)="onNoClick()">Anuluj</button>
+  <button mat-button color="primary" (click)="onYesClick()">Potwierdź</button>
+</div>

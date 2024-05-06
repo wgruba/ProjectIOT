@@ -1,0 +1,28 @@
+<body>
+    
+    <div class="user-profile-container">
+        <div class="profile-content">
+          <div class="username-and-picture">
+            <div class="profile-picture">
+              <img src="../assets/Logo.png" alt="User Profile Picture">
+            </div>
+            <div class="username">{{ user.name }}</div>
+          </div>
+          
+          <div class="verified-user">
+            Uprawnienia: {{user.permissionLevel}}
+          </div>
+          
+          <div class="user-details">
+            <div class="detail">
+              <span>Imię: {{ user.name }}</span>
+            </div>
+            <div class="detail">
+              <span>Email: {{ user.mail }}</span>
+            </div>
+          </div>
+
+          <button (click)="changePassword()" class="change-password-button">Zmień hasło</button>
+        </div>
+      </div>
+    </body>

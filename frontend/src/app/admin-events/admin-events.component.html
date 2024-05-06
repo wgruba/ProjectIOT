@@ -1,0 +1,33 @@
+
+
+<body>
+    <aside class="sidebar">
+        <nav>
+            <a [href]="'/admin-profile/'+user.name">Profil</a><br>
+            <a [href]="'/admin-events/'+user.name">Wydarzenia</a><br>
+            <a [href]="'/admin-subs/'+user.name">Subskrybcje</a><br>
+        </nav>
+    </aside>
+
+  <div class="events-container">
+    <h2>Wydarzenia</h2>
+    <ng-container *ngIf="events.length > 0; else noEvents">
+        <div class="event-list">
+          <div  class="event" *ngFor="let event of events">
+              <div class="card">
+                  <img [src]="event.imageUrl" alt="Event image">
+                  <div>
+                    <h3>{{ event.name }}</h3>
+                    <p>{{ event.startDate }} - {{ event.endDate }}</p>
+                  </div>
+                  <i class=""></i>
+                </div>              
+          </div>
+        </div> 
+    </ng-container>
+  
+    <ng-template #noEvents>
+      <p>Brak wydarzeń.</p>
+    </ng-template>
+  </div>
+</body>

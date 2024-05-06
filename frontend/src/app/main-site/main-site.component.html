@@ -1,0 +1,69 @@
+<body>
+<div class="container-fluid">
+    <div class="row">
+      <main class="col-12 px-0">
+        <div class="swiper-card">
+          <h2 class="swiper-header"> Polecane wydarzenia</h2>
+            <swiper-container appSwiper #swiper [config]="swiperConfig" thumbs-swiper=".mySwiper2" (slidechange)="slideChange($event)">
+              <swiper-slide *ngFor="let item of contents1; let i = index">
+                <div class="card" (mouseenter)="setHover('swiper1', i)" (mouseleave)="resetHover('swiper1')">
+                  <div class="card-image" (click)="navigateToDescriptionSite(item)">
+                    <img [src]="item.imageUrl" alt="{{ item.name }}">
+                  </div>
+                  <div class="card-body" [class.show]="hoverIndices['swiper1'] === i">
+                    <h3 class="card-title">{{ item.name }}</h3>
+                    <p class="card-description" *ngIf="hoverIndices['swiper1'] === i">
+                      <p>{{ item.startDate }} - {{ item.endDate }}</p>
+                      <p>{{ item.localisation }}</p>
+                    </div>
+                </div>
+                <h3 class="card-title" *ngIf="hoverIndices['swiper1'] !== i">{{ item.name }}</h3>
+              </swiper-slide>
+            </swiper-container>
+          </div>
+
+          <div class="swiper-card">
+            <h2 class="swiper-header"> Ostatnio Dodane </h2>
+            <swiper-container appSwiper #swiper [config]="swiperConfig" thumbs-swiper=".mySwiper2" (slidechange)="slideChange($event)">
+              <swiper-slide *ngFor="let item of contents2; let i = index">
+                <div class="card" (mouseenter)="setHover('swiper2', i)" (mouseleave)="resetHover('swiper2')">
+                  <div class="card-image" (click)="navigateToDescriptionSite(item)">
+                    <img [src]="item.imageUrl" alt="{{ item.name }}">
+                  </div>
+                  <div class="card-body" [class.show]="hoverIndices['swiper2'] === i">
+                    <h3 class="card-title">{{ item.name }}</h3>
+                    <p class="card-description" *ngIf="hoverIndices['swiper2'] === i">
+                      <p>{{ item.startDate }} - {{ item.endDate }}</p>
+                      <p>{{ item.localisation }}</p>
+                    </div>
+                </div>
+                <h3 class="card-title" *ngIf="hoverIndices['swiper2'] !== i">{{ item.name }}</h3>
+              </swiper-slide>
+              
+            </swiper-container>
+          </div>
+          <div class="swiper-card">
+            <h2 class="swiper-header"> Najbliższe wydarzenia w Polsce </h2>
+            <swiper-container appSwiper #swiper [config]="swiperConfig" thumbs-swiper=".mySwiper3" (slidechange)="slideChange($event)">
+              <swiper-slide *ngFor="let item of contents3; let i = index">
+                <div class="card" (mouseenter)="setHover('swiper3', i)" (mouseleave)="resetHover('swiper3')">
+                  <div class="card-image" (click)="navigateToDescriptionSite(item)">
+                    <img [src]="item.imageUrl" alt="{{ item.name }}">
+                  </div>
+                  <div class="card-body" [class.show]="hoverIndices['swiper3'] === i">
+                    <h3 class="card-title">{{ item.name }}</h3>
+                    <p class="card-description" *ngIf="hoverIndices['swiper3'] === i">
+                      <p>{{ item.startDate }} - {{ item.endDate }}</p>
+                      <p>{{ item.localisation }}</p>
+                    </div>
+                </div>
+                <h3 class="card-title" *ngIf="hoverIndices['swiper3'] !== i">{{ item.name }}</h3>
+              </swiper-slide>
+              
+            </swiper-container>
+          </div>
+      </main>
+    </div>
+</div>
+
+  

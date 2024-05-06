@@ -1,0 +1,66 @@
+<body [class]="{'admin-body': isAdmin, 'user-body': isUser}">
+<div class="main-page">
+    <aside class="filters">
+        <div class="filter-content" [formGroup]="filterForm">
+          <p class="filtr-category">Filtry:</p>
+          <input type="checkbox" class="sidebar-checkbox" id="historyczne" name="historyczne" value=1 formControlName="historyczne">
+          <label for="historyczne">Wydarzenia już zakończone</label><br>
+          
+          <div>
+            Rezerwacja miejsc:<br>
+            <input type="radio" class="sidebar-checkbox" id="rezerwacja-wymagana" name="rezerwacja" value=1 formControlName="rezerwacja">
+            <label for="rezerwacja-wymagana">Rezerwacja Wymagana</label><br>
+            <input type="radio" class="sidebar-checkbox" id="rezerwacja-niewymagana" name="rezerwacja" value=0 formControlName="rezerwacja">
+            <label for="rezerwacja-niewymagana">Rezerwacja Niewymagana</label><br>
+            <input type="radio" class="sidebar-checkbox" id="rezerwacja-obojętnie" name="rezerwacja" value=2 formControlName="rezerwacja">
+            <label for="rezerwacja-obojętnie">Obojętnie</label><br>
+          </div>
+          
+          <div>
+            Koszt:<br>
+            <input type="radio" class="sidebar-checkbox" id="koszt-darmowe" name="koszt" value=0 formControlName="koszt">
+            <label for="koszt-darmowe">Darmowe</label><br>
+            <input type="radio" class="sidebar-checkbox" id="koszt-płatne" name="koszt" value=1 formControlName="koszt">
+            <label for="koszt-płatne">Płatne</label><br>
+            <input type="radio" class="sidebar-checkbox" id="koszt-obojętnie" name="koszt" value=2 formControlName="koszt" checked>
+            <label for="koszt-obojętnie">Obojętnie</label><br>
+          </div>
+          
+          <div>
+            Wymagany wiek:<br>
+            <label><input class="sidebar-checkbox" id="wiek-rodzinne" name="wiek" formControlName="wiek" type="radio" value="FAMILY_FRIENDLY"> Rodzinne</label><br>
+            <label><input class="sidebar-checkbox" id="wiek-over12" name="wiek" formControlName="wiek" type="radio" value="OVER12"> 13+</label><br>
+            <label><input class="sidebar-checkbox" id="wiek-over16" name="wiek" formControlName="wiek" type="radio" value="OVER16"> 16+</label><br>
+            <label><input class="sidebar-checkbox" id="wiek-over18" name="wiek" formControlName="wiek" type="radio" value="OVER18"> 18+</label><br>
+          </div>          
+          
+          <!-- selector miejsc NIE DZIAŁA NIE WIEM DLACZEGO -->
+          <div>
+            <label for="miejscaMin">Ilość miejsc od</label>
+            <input type="number" class="sidebar-input" name="miejscaMin" min="0" formControlName="miejscaMin">
+            <label for="miejscaMax">do</label>
+            <input type="number" class="sidebar-input" name="miejscaMax" min="0" formControlName="miejscaMax"><br>
+          </div>
+          <br>
+          <button class="filterButton" (click)="applyFilters()">Filtruj</button>
+          <br>
+          <button class="filterButton" (click)="resetFilters()">Resetuj filtry</button> <!-- Dodany przycisk resetujący -->
+        </div>
+      </aside>
+
+    <div class="event-list">
+      <div *ngIf="events.length > 0" class="event-list">
+        <div *ngFor="let event of events">
+            <div class="card" >
+                <img [src]="event.imageUrl" alt="Event image">
+                <div>
+                    <h3>{{ event.name }}</h3>
+                    <p>{{ event.startDate }} - {{event.endDate}}</p>
+                </div>
+                <button (click)="showDetails(event)"> Sprawdź </button>
+            </div>              
+        </div>
+    </div>  
+      </div>  
+</div>
+</body>

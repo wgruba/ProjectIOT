@@ -1,0 +1,129 @@
+
+.filters {
+    margin: 20px;
+    flex: 0 0 250px;
+    padding: 20px;
+    border-radius: 20px;
+    height: 100vh;
+    width: 100%; 
+    max-width: 250px; 
+}
+
+.user-body .filters {
+  background: linear-gradient(#FF9505, #ffffff);
+  filter: brightness(110%);
+}
+
+.admin-body .filters {
+  background-color: #52A5E9;
+}
+
+.admin-body .card {
+  background-color: #F1F7EA;
+}
+
+.user-body .card {
+  background: linear-gradient(#FFF8E1 ,#FFFAE8);
+}
+
+.admin-body button {
+  background-color: #0060AA;
+  color: white; 
+}
+
+
+.event-list {
+    padding: 20px;
+    width: 100%; 
+    margin-top: 20px; 
+    
+  .card {
+    width: 100%; 
+    max-width: 100%;
+    margin: 20px 0; 
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between; 
+    border-radius: 10px;
+    padding: 10px;
+
+    img {
+          max-width: 100px; 
+          height: auto; 
+          border-radius: 10px;
+      }
+
+    .card-content {
+          flex-grow: 1; 
+          padding: 0 20px; 
+      }
+
+    h3, p {
+          color: #494949; 
+          margin: 5px 0;
+      }
+
+    button {
+          border: 1px solid #fff; 
+          padding: 8px 16px;
+          font-weight: bold;
+          border-radius: 20px;
+          cursor: pointer;
+          margin: 0 20px; 
+          white-space: nowrap; 
+
+          &:hover {
+          background-color: #FFA500; 
+          color: #494949; 
+          }
+      }
+    }
+}
+
+.filterButton{
+    background-color: #FFA52A;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    width: auto;
+    height: auto;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.main-page {
+  display: flex;
+  flex-direction: row;
+  background-color: #FFFFFF; 
+  padding: 20px;
+  align-items: flex-start; 
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center; 
+
+    .filters {
+      order: 1; 
+      width: 100%; 
+    }
+
+    .event-list {
+      order: 2; 
+      width: 100%; 
+    }
+
+    .card {
+      flex-direction: column;
+      align-items: center; 
+    }
+  }
+}

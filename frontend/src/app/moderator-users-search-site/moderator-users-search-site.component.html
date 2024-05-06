@@ -1,0 +1,36 @@
+<body>
+    <div class="main-page">
+        <aside class="filters">
+          <div class="filter-content" [formGroup]="filterForm">
+            <p class="filtr-category">Filtry:</p>
+            <input type="checkbox" class="sidebar-checkbox" name="admini" value=1 formControlName="admini" checked>
+            <label for="admini">Admini</label><br>
+            <input type="checkbox" class="sidebar-checkbox" name="moderatorzy" value=2 formControlName="moderatorzy" checked>
+            <label for="moderatorzy">Moderatorzy</label><br>
+            <input type="checkbox" class="sidebar-checkbox" name="klienciVer" value=3 formControlName="klienciVer" checked>
+            <label for="klienciVer">Klienci Zweryfikowani</label><br>
+            <input type="checkbox" class="sidebar-checkbox" name="klienciNieVer" value=4 formControlName="klienciNieVer" checked>
+            <label for="klienciNieVer">Klienci Niezweryfikowani</label><br>
+            <input type="text" class="sidebar-input" name="imie" placeholder="Imię" formControlName="imie">
+            <input type="text" class="sidebar-input" name="email" placeholder="email" formControlName="email">
+            <br>
+            <br>
+            <button class="filtrButton" (click)="applyFilters()">Filtruj</button>
+          </div>
+        </aside>
+    
+        <div class="event-list">
+            <div *ngFor="let user of users">
+                <div class="card">
+                    <div> </div>
+                    <div>
+                      <h3>{{ user.name }}</h3>
+                      <p>{{ user.mail }}</p>
+                      <p>{{ user.permissionLevel }}</p>
+                    </div>
+                    <button (click)="showDetails(user.name)"> Sprawdź </button>
+                  </div>              
+            </div>
+          </div>  
+    </div>
+    </body>

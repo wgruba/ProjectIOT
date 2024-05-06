@@ -1,0 +1,23 @@
+<body>
+    <h1>FAQ</h1>
+    <div class="accordion">
+        <div *ngFor="let item of items" class="question" [class.selected]="selectedQuestion === item.question">
+          <div (click)="selectQuestion(item.question)">
+            {{ item.question }}
+          </div>
+          <div [ngClass]="{'shownAnswer': selectedQuestion === item.question, 'hiddenAnswer': selectedQuestion !== item.question}">
+            {{ item.answer }}
+          </div>
+        </div>
+      </div>
+    
+    <h1>Kontakt z nami</h1>
+    <p>
+        Posiadasz pytanie niezawarte w FAQ? Skontaktuj się z nami!
+        <br>
+        Numer telefonu: 123456789
+        <br>
+        Email: iwent@hub.pl
+    </p>
+      
+</body>

@@ -1,0 +1,24 @@
+<body>
+
+  <div *ngIf="events.length === 0" class="empty-message">
+    <h2>Nic tu nie ma</h2>
+    <p>nie masz nic do zaakceptowania.</p>
+  </div>
+
+  
+  <div class="main-page">
+
+      <div *ngIf="events.length > 0" class="event-list">
+          <div *ngFor="let event of events">
+              <div class="card">
+                  <img [src]="event.imageUrl" alt="Event image">
+                  <div>
+                      <h3>{{ event.name }}</h3>
+                      <p>{{ event.description }}</p>
+                  </div>
+                  <button (click)="showDetails(event)"> Sprawdź </button>
+              </div>              
+          </div>
+      </div>  
+  </div>
+</body>

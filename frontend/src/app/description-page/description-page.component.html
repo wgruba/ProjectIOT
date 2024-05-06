@@ -1,0 +1,47 @@
+<!-- description-page.component.html -->
+<div class="description-page-container">
+
+    <div class="event-content">
+
+        <div class="event-details-header">
+            <div class="event-image">
+                <img [src]="event.imageUrl"  alt="Event Image">
+            </div>
+        
+            <div class="event-details">
+                <h1>{{ event.name }}</h1>
+                <p class="event-time">{{event.startDate}} - {{event.endDate}}</p> <!-- zamienić na normalne daty !!!! -->
+                <p class="event-location">{{event.localisation}}</p>
+                <p class="event-participants">{{event.size}} osób</p>
+                <p class="event-organizer">Utworzone przez: {{ organizerName.name }} </p>
+                <p class="event-participants">{{event.ageGroup}} </p>
+
+                <div *ngIf="getNames().length > 0">
+                    <h3>Kategorie Wydarzenia:</h3>
+                    <ul  *ngFor="let category of getNames()">
+                        <div *ngIf="category !== ''">
+                      <li>{{ category }}</li>
+                    </div>
+                    </ul>
+                </div>
+                
+            </div>
+
+            <div class="event-actions">
+                <div  *ngIf="!isSubscribed && isLogged" >
+                <button type="button" (click)="subscribeEvent()" [class.subscribed]="isSubscribed"> + Obserwuj</button></div> 
+                <div  *ngIf="isSubscribed && isLogged"><button type="button" (click)="unsubscribeEvent(event.id)" [class.subscribed]="isSubscribed"> Anuluj Subskrybcję </button></div> <i *ngIf="isSubscribed" class="checkmark">✔</i> 
+                <div  *ngIf="!isLogged"><button type="button"> Obserwuj</button></div>
+                <button type="button" class="event-page-button">Strona eventu</button>
+                <button type="button" (click)="addToGoogleCalendar(event)">Importuj</button>
+            </div>
+        </div>
+
+        <div class="event-details-body">
+            <h2>{{event.name}}</h2>
+            <p class="event-description">{{event.description}}</p>
+        </div>
+
+        <app-map  [location]="event.localisation"></app-map>
+    </div>
+  

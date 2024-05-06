@@ -1,0 +1,36 @@
+<body>  
+    <a routerLink="/"><img class="logo" src="assets/Logo.png" alt="Logo Strony"></a>
+
+    <div class="login">
+        <form action="login.php" method="post" (submit)="registerUser($event)">
+            <div class="login-input">
+                Nazwa Użytkownika
+                <br>
+                <input type="text" name="login" [(ngModel)]="login">
+                <br>
+                <br>
+                Email
+                <br>
+                <input type="email" name="email" [(ngModel)]="email">
+                <br>
+                <br>
+                Hasło
+                <br>
+                <input type="password" name="password" id="password" [(ngModel)]="password" (input)="updateWarning()">
+                <br>
+                <br>
+                Powtórz Hasło
+                <br>
+                <input type="password" name="password_repeated" id="password-repeat" [(ngModel)]="password_repeated" (input)="updateWarning()">
+            </div>
+            <p class="password-warning">{{warning}}</p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="login-button">
+                <input type="submit" value="Zarejestruj">
+            </div>
+        </form>
+    </div>
+</body>

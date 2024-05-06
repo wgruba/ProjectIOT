@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona logowania</title>
+
+</head>
+<body>
+    
+
+    <a routerLink="/"><img class="logo" src="assets/Logo.png" alt="Logo Strony"></a>
+
+    <div class="login">
+    <form (submit)="onSubmit()">
+      <div class="login-input">
+        <input type="text" id="username" [(ngModel)]="username" name="username" placeholder="Nazwa Użytkownika">
+      </div>
+      <div>
+        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Hasło">
+      </div>
+      <div class="error-message">
+        {{errorMessage}}
+      </div>
+      <button type="submit">Login</button>
+  </form>
+
+  <button class="forgot" (click)="onForgot()">Nie pamiętam hasła</button>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+.content{
+    margin-top: 8%
+}
+
+@media (max-width: 2000px) {
+    .content {
+        margin-top: 10%;
+    }
+}
+
+@media (max-width: 1400px) {
+    .content {
+        margin-top: 20%;
+    }
+}
+
+@media (max-width: 900px) {
+    .content {
+        margin-top: 40%;
+    }
+}  

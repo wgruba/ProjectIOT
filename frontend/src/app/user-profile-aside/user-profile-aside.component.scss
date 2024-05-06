@@ -1,0 +1,20 @@
+.sidebar {
+    margin: 20px;
+    background: linear-gradient(#FF9505 ,#cfa706);
+    filter: brightness(110%);
+    flex: 0 0 250px;
+    padding: 20px;
+    border-radius: 20px;
+    height: 100vh;
+  
+    nav a {
+      color: white; 
+      text-decoration: none;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }

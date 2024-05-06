@@ -1,0 +1,64 @@
+<body>
+    <app-user-profile-aside></app-user-profile-aside>
+
+  <div class="subscriptions-container">
+    <h2>Twoje Subskrybcje</h2>
+
+
+    <h3>Subskrybowane Kategorie:</h3>
+    <ng-container *ngIf="subscribedCategoriesList.length > 0; else noSubscriptions">
+        <div class="categories-list">
+          <div  class="category" *ngFor="let category of subscribedCategoriesList">
+              <div class="card">
+                  <div>
+                    <h3>{{ category.name }}</h3>
+                  </div>
+                  <button class="remove-button" (click)="openUnsubscribeCategoryModal(category.id)">
+                    <i class="fa fa-trash" aria-hidden="true"></i></button>   
+                </div>              
+          </div>
+        </div> 
+    </ng-container>
+
+    <h3>Subskrybowane Wydarzenia:</h3>
+    <ng-container *ngIf="subscribedEventsList.length > 0; else noSubscriptions">
+        <div class="event-list">
+          <div  class="event" *ngFor="let event of subscribedEventsList">
+              <div class="card"  (click)="showDetails(event)">
+                  <div>
+                    <h3>{{ event.name }}</h3>
+                  </div>
+                  <button class="remove-button" (click)="openUnsubscribeEventModal(event.id)">
+                    <i class="fa fa-trash" aria-hidden="true"></i></button>  
+                </div>              
+          </div>
+        </div> 
+    </ng-container>
+
+
+    <button (click)="addSubscription()">+ Dodaj Subskrybcje</button>
+  
+    <ng-template #noSubscriptions>
+      <p>Brak subskrypcji.</p>
+    </ng-template>
+  </div>
+
+
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmationModalLabel">Potwierdzenie</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Czy na pewno chcesz odsubskrybować?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+          <button type="button" class="btn btn-primary" >Potwierdź</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

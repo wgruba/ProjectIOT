@@ -1,0 +1,27 @@
+div {
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-right: 10%;
+    padding-left: 10%;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 25px;
+    background-image: linear-gradient(#ffb957, #ffffff);
+    flex: 1;
+}
+h1 {
+    font-size:45px;
+    color: rgb(172, 77, 9);
+}
+img {
+    flex-shrink: 0;
+    right: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}

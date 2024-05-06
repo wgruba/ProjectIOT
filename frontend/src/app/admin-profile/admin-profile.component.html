@@ -1,0 +1,50 @@
+<body>
+    <aside class="sidebar">
+        <nav>
+            <a [href]="'/admin-profile/'+user.name">Profil</a><br>
+            <a [href]="'/admin-events/'+user.name">Wydarzenia</a><br>
+            <a [href]="'/admin-subs/'+user.name">Subskrybcje</a><br>
+        </nav>
+    </aside>
+    
+    <div class="user-profile-container">
+        <div class="profile-content">
+          <div class="username-and-picture">
+            <div class="profile-picture">
+              <img src="../assets/Logo.png" alt="User Profile Picture">
+            </div>
+            <div class="username">{{ user.name }}</div>
+          </div>
+          
+          <div class="verified-user">
+            Uprawnienia: {{user.permissionLevel}}
+          </div>
+          
+          <div class="user-details">
+            <div class="detail">
+              <span>Imię: {{ user.name }}</span>
+            </div>
+            <div class="detail">
+              <span>Email: {{ user.mail }}</span>
+            </div>
+          </div>
+
+        <div class="change-confirm" *ngIf="areYouSureVisible">
+            <div class="change-confirm-text">
+                <p>Czy na pewno chcesz zmienić uprawnienia użytkownika?</p>
+            </div>
+            <div class="change-confirm-buttons">
+                <button (click)="changePermissionConfirm()" class="change-password-button">Tak</button>
+                <button (click)="changePermissionCancel()" class="change-password-button">Nie</button>
+            </div>
+        
+        </div>
+
+          <button (click)="changePermission(1)" class="change-password-button">Uczyń Adminem</button>
+          <button (click)="changePermission(2)" class="change-password-button">Uczyń Moderator</button>
+          <button (click)="changePermission(3)" class="change-password-button">Uczyń Zweryfikowanym</button>
+          <button (click)="changePermission(4)" class="change-password-button">Uczyń Niezweryfikowanym</button>
+          <!-- <button (click)="changePassword()" class="change-password-button">Zmień hasło</button> -->
+        </div>
+      </div>
+    </body>

@@ -1,0 +1,125 @@
+<header [class]="{'admin-header': isAdmin, 'user-header': isUser}">
+    <div class="upper-section">
+        <div class="left-section">
+            <a routerLink="/home"><img src="assets/Logo.png" alt="Logo Strony"></a>
+        </div>
+        <div class="center-section">
+            <ul class="navigation-list" *ngIf="isUser">
+                <li><a routerLink="/home">Strona główna</a></li>
+                <li><a routerLink="/o-nas">O nas</a></li>
+                <li><a routerLink="/add-event">Dodaj wydarzenie</a></li>
+                <li><a routerLink="/pomoc">Pomoc</a></li>
+            </ul>
+
+            <ul class="navigation-list" *ngIf="isAdmin">
+              <li><a routerLink="/admin-acceptance">Strona główna</a></li>
+              <li><a routerLink="/admin-acceptance">Wydarzenia do Akceptacji</a></li>
+              <li><a routerLink="/category-management">Kategorie</a></li>
+              <li><a routerLink="/admin-users">Użytkownicy</a></li>
+          </ul>
+        </div>
+      <div class="right-section">
+            <ng-container *ngIf="authService.isLoggedIn$ | async; else loggedOutTemplate">
+              <button (click)="logout()" class="logout-button"><i class="fas fa-sign-out-alt"></i> Wyloguj</button>
+              <button *ngIf="isUser" routerLink="/user-profile" class="profile-button"><i class="fas fa-user"></i> Profil</button>
+              <button *ngIf="isAdmin" routerLink="/mod-profile" class="profile-button"><i class="fas fa-user"></i> Profil</button>
+            </ng-container>
+          
+            <ng-template #loggedOutTemplate>
+              <button routerLink="/login-site" class="login-button"><i class="fas fa-sign-in-alt"></i> Zaloguj</button>
+              <button routerLink="/register-site" class="register-button"><i class="fas fa-user-plus"></i> Zarejestruj</button>
+            </ng-template>
+        </div>
+    </div>
+    
+    <div class="lower-section">
+        <div class="search-content" [formGroup]="searchForm">            
+            <input type="text" placeholder="Wpisz nazwę ..." formControlName="name">
+            <div dropdown>
+                <button class="category-button" type="button" id="categoryDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                  Kategorie: 
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                  <li *ngFor="let category of categories" class="dropdown-submenu">
+                    <a class="dropdown-item" href="javascript:void(0);"
+                       (click)="toggleCategorySelection(category.id)">
+                      {{ category.name }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-submenu-right">
+                      <li *ngFor="let subcategory of category.subcategories">
+                        <a class="dropdown-item" href="javascript:void(0);"
+                           (click)="toggleSubcategorySelection(subcategory.first)">
+                          {{ subcategory.second }}
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
+            <div *ngIf="selectedCategoryIds.length > 0 || selectedSubcategoryIds.length > 0 ">
+              <button class="show-selected-category-button" (click)="togglePopup()">Pokaż wybrane Kategorie ({{selectedCategoryIds.length + selectedSubcategoryIds.length}})</button>
+            </div>
+
+            <div class="popup" *ngIf="showPopup">
+            <div class="popup-content">
+                <div class="popup-header">
+                <h5>Wybrane Kategorie</h5>
+                <button (click)="togglePopup()">Zamknij</button>
+                </div>
+                <div class="popup-body">
+                  <div class="category-list">
+                    <ul>
+                      <li *ngFor="let categoryName of getSelectedCategoryNames()">
+                        {{ categoryName }}
+                        <button class="remove-button" (click)="removeSelectedCategory(categoryName)">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                          </button>                              
+                        </li>
+                    </ul>
+                    <ul>
+                      <li *ngFor="let subcategoryName of getSelectedSubcategoryNames()">
+                        {{ subcategoryName }}
+                        <button class="remove-button" (click)="removeSelectedSubcategory(subcategoryName)">
+                            <i class="fa fa-trash" aria-hidden="true"></i></button>                         
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+          </div>
+
+
+            <div dropdown>
+              <button class="category-button" type="button" id="localisationDropdown"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                {{ viewLocation || 'Lokalizacja:' }} 
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="localisationDropdown">
+                  <li *ngFor="let localisation of localisations" class="dropdown-submenu">
+                    <a class="dropdown-item" href="javascript:void(0);"
+                       (click)="toggleLocation(localisation.name)">
+                      {{ localisation.name }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-submenu-right">
+                      <li *ngFor="let subcategory of localisation.subcategories">
+                        <a class="dropdown-item" href="javascript:void(0);"
+                           (click)="toggleLocation(localisation.name, subcategory.name)">
+                          {{ subcategory.name }}
+                        </a>
+                      </li>
+                    </ul> 
+                  </li>
+              </ul>
+            </div>
+
+
+            <div class="date-checker">
+                Od: <input  type="datetime-local" class="date-button"  formControlName="startDate" name="dataOd">
+                Do: <input  type="datetime-local" class="date-button"  formControlName="endDate" name="dataDo">
+            </div>
+            <button class="search-button" (click)="onSearch()">Szukaj</button>
+      </div>
+    </div>
+</header>

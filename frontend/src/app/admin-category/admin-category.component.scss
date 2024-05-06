@@ -1,0 +1,98 @@
+
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  width: 50%;
+  padding-top: 30px;
+}
+
+.category {
+  background: linear-gradient(#0987bd ,#84c8e6);
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 5px; /* Adjust the margin as needed */
+  transition: margin 0.3s ease; /* Smooth margin transition */
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.category input {
+  background-color: #ade7e7;
+  border-radius: 10px;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.addSubcategory input {
+  background-color: #ade7da;
+}
+
+.category button {
+  background-color: #0942bd;
+  color: white;
+  border-radius: 10px;
+  padding: 0;
+  font-weight: bold;
+  width: 50px;
+  font-size: 27px;
+  height: 50px;
+}
+
+.shownAnswer {
+  min-height: 20px;
+  max-height: fit-content;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.5s ease; /* Smooth transitions for height and padding */
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  margin-bottom: 5px; /* Adjust the margin as needed */
+  visibility: visible;
+  background: linear-gradient(#09b7bd ,#84e6e6);
+}
+
+.addCategory {
+  background: linear-gradient(#0987bd ,#84c8e6);
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 5px; /* Adjust the margin as needed */
+  transition: margin 0.3s ease; /* Smooth margin transition */
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.addSubcategory {
+  min-height: 20px;
+  max-height: fit-content;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.5s ease; /* Smooth transitions for height and padding */
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  margin-bottom: 5px; /* Adjust the margin as needed */
+  visibility: visible;
+  background: linear-gradient(#09b7bd ,#84e6e6);
+}
+
+.hiddenAnswer {
+  max-height: 0;
+  min-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.5s ease; /* Smooth transitions for height and padding */
+  padding: 0;
+  border-top: 0;
+  margin-bottom: 0; /* Adjust the margin as needed */
+  visibility: hidden;
+}
+
+p {
+  text-align: center;
+  font-size: 30px;
+
+}

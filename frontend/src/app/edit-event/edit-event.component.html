@@ -1,0 +1,130 @@
+<body>
+    <app-user-profile-aside></app-user-profile-aside>
+    <div class="container">
+        <main class="main-content">
+            <h1>Edytuj Wydarzenie</h1>
+           <div [formGroup]="eventForm" >
+                  <div class="form-group">
+                    <label for="eventName">Nazwa Wydarzenia:  <span class="required">*</span></label>
+                    <input type="text" id="eventName" formControlName="eventName" >
+                    <div *ngIf="eventForm.get('eventName')?.invalid && eventForm.get('eventName')?.touched">
+                       Nazwa wydarzenia jest polem obowiązkowym.
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="imageUrl">Zdjęcie:</label>
+                    <input type="text" id="imageUrl" formControlName="imageUrl">
+                </div>
+              
+                    <div class="form-group">
+                        <label for="participants">Maksymalna liczba uczestników:  <span class="required">*</span></label>
+                        <input type="number" id="participants" formControlName="participants">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" formControlName="isFree" type="checkbox" id="flexSwitchCheckChecked" unchecked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Czy wydarzenie jest płatne?</label>
+                          </div>                    
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" formControlName="isOnline" type="checkbox" id="flexSwitchCheckChecked2" unchecked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked2">Czy wydarzenie jest online?</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" formControlName="isReservationRequired" type="checkbox" id="flexSwitchCheckChecked3" unchecked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked3">Czy wymagana jest rezerwacja?</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ageRequirement">Wymagany wiek:</label>
+                        <label><input formControlName="ageRequirement" type="radio" value="FAMILY_FRIENDLY"> Rodzinne</label>
+                        <label><input formControlName="ageRequirement" type="radio" value="OVER12"> 13+</label>
+                        <label><input formControlName="ageRequirement" type="radio" value="OVER16"> 16+</label>
+                        <label><input formControlName="ageRequirement" type="radio" value="OVER18"> 18+</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="startTime">Czas rozpoczęcia:  <span class="required">*</span></label>
+                        <input formControlName="startTime" type="datetime-local" id="startTime" required>
+                        <div *ngIf="eventForm.get('startTime')?.errors?.['startTimeInvalid']">
+                            Wydarzenie nie może zacząć sie w przeszłości.
+                          </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="endTime">Czas zakończenia:  <span class="required">*</span></label>
+                        <input formControlName="endTime" type="datetime-local" id="endTime" required>
+                        <div *ngIf="eventForm.get('endTime')?.errors?.['dateInvalid']">
+                            Wydarzenie nie może skończyć się zanim się zacznie.
+                          </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="localisation">Lokalizacja:  <span class="required">*</span></label>
+                        <input type="text" id="localisation" formControlName="localisation">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Opis:  <span class="required">*</span></label>
+                        <textarea formControlName="description" id="description" rows="4"></textarea>
+                        
+                    </div>
+
+                    <div dropdown>
+                        <button class="add-category-button" type="button" id="categoryDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                          Dodaj Kategorie: 
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                            <li *ngFor="let category of categories" class="dropdown-submenu">
+                              <a class="dropdown-item" href="javascript:void(0);"
+                                 (click)="toggleCategorySelection(category.id)">
+                                {{ category.name }}
+                              </a>
+                              <ul class="dropdown-menu dropdown-submenu-right">
+                                <li *ngFor="let subcategory of category.subcategories">
+                                  <a class="dropdown-item" href="javascript:void(0);"
+                                     (click)="toggleSubcategorySelection(subcategory.first)">
+                                    {{ subcategory.second }}
+                                  </a>
+                                </li>
+                              </ul>
+                            </li>
+                        </ul>
+                      </div>
+                      
+                          <!-- Display Selected Categories and Subcategories -->
+                          <div class="category-list">
+                            <ul>
+                              <li *ngFor="let categoryName of getSelectedCategoryNames()">
+                                {{ categoryName }}
+                                <button class="remove-button" (click)="removeSelectedCategory(categoryName)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                  </button>                              
+                                </li>
+                            </ul>
+                            <ul>
+                              <li *ngFor="let subcategoryName of getSelectedSubcategoryNames()">
+                                {{ subcategoryName }}
+                                <button class="remove-button" (click)="removeSelectedSubcategory(subcategoryName)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i></button>                         
+                                </li>
+                            </ul>
+                        </div>
+                                   
+
+                    <div class="form-group">
+                        <button type="submit" (click)="onSubmit()" >Zapisz</button>
+                    </div>
+            </div>
+        </main>
+    </div>
+</body>
